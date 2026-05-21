@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(venv\\\\Scripts\\\\python.exe -c \"import httpx; print\\(httpx.__version__\\)\")",
+      "Bash(venv\\\\Scripts\\\\python.exe -c \"import pydantic_settings; print\\('ok'\\)\")",
+      "Bash(venv\\\\Scripts\\\\python -m pytest tests/test_tasks.py -v)"
+    ]
+  }
+}

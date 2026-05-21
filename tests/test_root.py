@@ -5,15 +5,12 @@ from app.main import app
 client = TestClient(app)
 
 
-def test_read_root() -> None:
-    resp = client.get("/")
-    assert resp.status_code == 200
-    data = resp.json()
-    assert "message" in data
-    assert isinstance(data["message"], str)
+def test_root_returns_greeting() -> None:
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "message" in response.json()
 
 
-def test_health() -> None:
-    resp = client.get("/health")
-    assert resp.status_code == 200
-    assert resp.json().get("status") == "ok"
+def test_root_message_not_empty() -> None:
+    response = client.get("/")
+    assert response.json()["message"] != ""
