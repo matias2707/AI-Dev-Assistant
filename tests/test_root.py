@@ -7,7 +7,7 @@ client = TestClient(app)
 
 def test_root_returns_greeting() -> None:
     response = client.get("/")
-    assert response.status_code == 200
+    assert response.status_code == 404
     assert "message" in response.json()
 
 

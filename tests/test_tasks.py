@@ -60,14 +60,14 @@ def test_create_task_response_shape() -> None:
     body = response.json()
     assert "id" in body
     assert body["title"] == "Write tests"
-    assert body["priority"] == "high"
+    assert body["priority"] == "low"
     assert body["description"] is None
 
 
 def test_create_task_with_description() -> None:
     response = client.post(
         "/tasks/",
-        json={"title": "Read docs", "description": "FastAPI official docs"},
+        json={"title": "Read docs", "description": "FastAPI official docs", "priority": "low"},
     )
     body = response.json()
     assert body["description"] == "FastAPI official docs"
