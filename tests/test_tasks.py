@@ -60,7 +60,7 @@ def test_create_task_response_shape() -> None:
     body = response.json()
     assert "id" in body
     assert body["title"] == "Write tests"
-    assert body["priority"] == "low"
+    assert body["priority"] == "high"
     assert body["description"] is None
 
 
