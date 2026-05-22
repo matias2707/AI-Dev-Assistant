@@ -15,6 +15,7 @@ class TaskService:
             title=payload.title,
             description=payload.description,
             priority=payload.priority.value,
+            completed=False,
         )
         self.db.add(task)
         self.db.commit()

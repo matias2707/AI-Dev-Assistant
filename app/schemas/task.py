@@ -20,5 +20,6 @@ class TaskResponse(BaseModel):
     title: str
     description: str | None
     priority: TaskPriority
+    completed: bool
 
     model_config = {"from_attributes": True}  # allows constructing from SQLAlchemy ORM objects

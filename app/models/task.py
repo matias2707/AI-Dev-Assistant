@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String
+from sqlalchemy import Boolean, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.database import Base
@@ -11,3 +11,4 @@ class Task(Base):
     title: Mapped[str] = mapped_column(String(200), nullable=False)
     description: Mapped[str | None] = mapped_column(String(1000), nullable=True)
     priority: Mapped[str] = mapped_column(String(20), nullable=False, default="medium")
+    completed: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)

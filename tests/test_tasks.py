@@ -62,6 +62,27 @@ def test_create_task_response_shape() -> None:
     assert body["title"] == "Write tests"
     assert body["priority"] == "high"
     assert body["description"] is None
+    assert body["completed"] is False
+
+
+def test_create_task_defaults_to_not_completed() -> None:
+    response = client.post("/tasks/", json={"title": "New task"})
+    assert response.status_code == 201
+    assert response.json()["completed"] is False
+
+
+def test_list_tasks_includes_completed_field() -> None:
+    client.post("/tasks/", json={"title": "Task A"})
+    response = client.get("/tasks/")
+    assert response.status_code == 200
+    assert all("completed" in task for task in response.json())
+
+
+def test_create_task_ignores_completed_in_payload() -> None:
+    response = client.post("/tasks/", json={"title": "Task B", "completed": True})
+    assert response.status_code in (201, 422)
+    if response.status_code == 201:
+        assert response.json()["completed"] is False
 
 
 def test_create_task_with_description() -> None:
